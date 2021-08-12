@@ -1,0 +1,194 @@
+John Doe, [12.08.21 17:21]
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Levi Bike Showroom</title>
+ <style type="text/css">
+  input[type="number"],input[type="text"],input[type="date"],input[type="tel"],select{
+   width: 98%;
+  }
+  body{
+   background-size: 70%;
+   font-weight: bold;
+   background-image: url("Levi.png");
+   background-position: center;
+   background-repeat: no-repeat;
+  }
+  div{
+   margin: auto;
+   padding-bottom: 10px;
+  }
+  ::-webkit-input-placeholder{
+   color: #696969;
+   font-weight: bold;
+  }
+  h3{
+   color: #ffffff;
+   background-color: #00e6e6;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   width: 50%;
+   padding: 5px;
+   border-radius: 6px;
+  }
+  table , tr , td{
+   width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+   border-spacing: 1px;
+   border-radius: 6px;
+   color: #0099ff;
+   background-color: #f2f2f2;
+   padding: 1px;
+  }
+  div{
+   font-size: 20px;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+  }
+  #submit{
+   color: #ffffff;
+   background-color: #00e6e6;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 5px;
+   width: 50%;
+   font-family: Verdana;
+   font-weight: bold;
+   border-radius: 6px;
+  }
+  #result{
+   color: #696969;
+   font-size: 20px;
+  }
+ </style>
+ <script type="text/javascript">
+  var esrp;
+  var iy;
+  var bm;
+  var bc;
+  var ia;
+
+  function ddlselect1(sel){
+   bm = sel.options[sel.selectedIndex].value;
+   if (bm == "LeviRT200") {
+    document.getElementById('rtoCharges').value = 30040;
+    esrp = 234500; 
+   }
+   else if (bm == "LeviRT150") {
+    document.getElementById('rtoCharges').value = 25032;
+    esrp = 175900;
+   }
+   else if (bm == "LeviUltimate350") {
+    document.getElementById('rtoCharges').value = 30721;
+    esrp = 356790;
+   }
+  }
+  function ddlselect2(sel){
+   bc = sel.options[sel.selectedIndex].value;
+   if (bc == "White") {
+    document.getElementById('showRoomPrice').value = (esrp) + (esrp * 0.005);
+    ia = 1520;
+   }
+   else if (bc == "Gray") {
+    document.getElementById('showRoomPrice').value = (esrp) + (esrp * 0.003);
+    ia = 1367;
+   }
+   else if (bc == "Black") {
+    document.getElementById('showRoomPrice').value = (esrp) + (esrp * 0);
+    ia = 1940;
+   }
+  }
+  function ddlselect3(td){
+   var iy = document.getElementById('yearOfInsurance').value;
+   if(bc == "White"){
+    document.getElementById('insuranceAmount').value = iy*ia;
+   }
+   else if(bc == "Gray"){
+    document.getElementById('insuranceAmount').value = iy*ia;
+   }
+   else if(bc == "Black"){
+    document.getElementById('insuranceAmount').value = iy*ia;
+   }
+  }  
+  function display(){
+   var rc;
+   var srp;
+   var ina;
+   rc = document.getElementById('rtoCharges').value;
+   srp = document.getElementById('showRoomPrice').value;
+   ina = document.getElementById('insuranceAmount').value;
+
+   var res = Math.round(parseInt(rc) + parseInt(srp) + parseInt(ina));
+   document.getElementById('result').innerHTML = "The on-road price of the " + bc + " " + bm + " " +"is Rs." + " " + res;
+
+   return false; 
+  }
+ </script>
+</head>
+<body>
+<div>
+<h3>Levi Bike Showroom</h3>
+<form action="javascript:;" onsubmit="return display()">
+<table>
+<tr>
+ <td>Customer Name</td>
+ <td><input type="text" id="cname" placeholder="Enter the customer name" pattern="[a-Z\s]" required=""></td>
+</tr>
+<tr>
+ <td>Phone Number</td>
+ <td><input type="tel" id="phno" placeholder="Enter the phone number" pattern="[789]{1}[0-9]{9}"></td>
+</tr>
+<tr>
+ <td>Booking Id</td>
+ <td><input type="number" id="bid" placeholder="Enter the booking id" required=""></td>
+</tr>
+<tr>
+ <td>Date of Booking</td>
+ <td><input type="date" id="bookingdate" required=""></td>
+</tr>
+<tr>
+ <td>Bike Model</td>
+ <td><select id="bikeModel" onchange="ddlselect1(this);">
+  <option>Select Model..</option>
+  <option value="LeviRT200">LeviRT200</option>
+
+John Doe, [12.08.21 17:21]
+<option value="LeviRT150">LeviRT150</option>
+  <option value="LeviUltimate350">LeviUltimate350</option>
+ </select></td>
+</tr>
+<tr>
+ <td>Model Color</td>
+ <td><select id="modelColor" onchange="ddlselect2(this);">
+  <option>Select Color..</option>
+  <option value="White">White</option>
+  <option value="Gray">Gray</option>
+  <option value="Black">Black</option>
+ </select></td>
+</tr>
+<tr>
+ <td>Year of Insurance</td>
+ <td><input type="number" id="yearOfInsurance" placeholder="Enter the Year Of Insurance" required="" onchange="ddlselect3(this);"></td>
+</tr>
+<tr>
+ <td>ShowRoom Price</td>
+ <td><input type="number" id="showRoomPrice" required="" readonly="" onchange="ddlselect(this);"></td>
+</tr>
+<tr>
+ <td>Insurance Amount</td>
+ <td><input type="number" id="insuranceAmount" required="" readonly="" onchange="ddlselect(this);"></td>
+</tr>
+<tr>
+ <td>RTO Charges</td>
+ <td><input type="number" id="rtoCharges" required="" readonly="" onchange="ddlselect(this);"></td>
+</tr>
+</table>
+<input type="submit" id="submit" value="CONFIRM ORDER">
+<div id="result"></div>
+</form>
+</div>
+</body>
+</html>
